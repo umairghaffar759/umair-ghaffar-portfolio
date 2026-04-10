@@ -17,14 +17,25 @@
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
+  
+  /* ===== COLORS ===== */
   --accentColor: #5eead4;
   --backgroundColor: #0a0e17;
+  --darkBg: #050810;
+  
+  /* ===== SPACING - RESPONSIVE ===== */
+  --containerPadding: clamp(15px, 5vw, 60px);
+  --sectionGap: clamp(20px, 4vw, 50px);
+  
+  /* ===== VIEWPORT HEIGHT ===== */
   --vh: 100vh;
   --vh: 100svh;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Geist", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -54,35 +65,207 @@ main {
 /* ========================================= */
 /* BASE GLOBAL STYLES (UNIVERSAL)            */
 /* ========================================= */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
 body {
   margin: 0;
-  height: auto;
-  background-color: #050810;
-  flex-grow: 1;
-  --cWidth: calc(100% - 30px);
-  max-width: 100vw;
-  overflow-x: hidden; 
+  padding: 0;
+  background-color: var(--darkBg);
+  color: #eae5ec;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .main-body {
+  width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
 
 .container-main {
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ========================================= */
+/* UNIVERSAL SECTION CONTAINER              */
+/* ========================================= */
+.section-container {
+  /* Flexible width - no hardcoded pixels */
+  width: min(100% - 2 * var(--containerPadding), 1400px);
+  max-width: calc(100% - 2 * var(--containerPadding));
+  margin: 0 auto;
+  padding: 0;
   position: relative;
 }
 
 .container1 {
-  width: var(--cWidth);
-  height: var(--vh);
-  margin: auto;
+  width: 100%;
+  min-height: var(--vh);
+  margin: 0 auto;
+  padding: 0 var(--containerPadding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 
-.split-line, .split-h2 {
+/* ========================================= */
+/* LANDING SECTION - FLEX LAYOUT             */
+/* ========================================= */
+.landing-section, 
+.about-section,
+.section-with-model {
+  width: 100%;
+  min-height: var(--vh);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--sectionGap);
+  align-items: center;
+  padding: var(--containerPadding) 0;
+  position: relative;
+}
+
+/* Text side */
+.landing-text,
+.about-text,
+.section-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 100%;
+  padding: var(--sectionGap);
+  z-index: 10;
+  position: relative;
+}
+
+.landing-text h1,
+.about-text h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+h2, h3 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.4;
+}
+
+p, .para {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 90%;
+}
+
+/* Model/Canvas side */
+.character-container,
+.canvas-container,
+.model-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  position: relative;
+  z-index: 1;
+}
+
+.character-container canvas,
+.canvas-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+/* ========================================= */
+/* GRID CARDS SECTION                        */
+/* ========================================= */
+.what-i-do-grid,
+.grid-container,
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: var(--sectionGap);
+  width: 100%;
+  margin: var(--sectionGap) 0;
+}
+
+.what-i-do-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Card styles */
+.card, .grid-card {
+  padding: var(--sectionGap);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(94, 234, 212, 0.2);
+  transition: all 0.3s ease;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card:hover, .grid-card:hover {
+  background: rgba(94, 234, 212, 0.1);
+  border-color: var(--accentColor);
+  transform: translateY(-5px);
+}
+
+/* ========================================= */
+/* TECHSTACK SECTION                        */
+/* ========================================= */
+.techstack {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  min-height: auto;
+  padding: 100px var(--containerPadding) 50px;
+}
+
+.techstack h2 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  text-align: center;
+  width: 100%;
+  margin: 0 0 50px 0;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.tech-list,
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: var(--sectionGap);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========================================= */
+/* SPLIT LINE ANIMATION                     */
+/* ========================================= */
+.split-line, 
+.split-h2 {
   overflow: hidden;
 }
 
@@ -92,115 +275,240 @@ body {
   flex-wrap: nowrap;
 }
 
-.techstack {
-  width: 100%;
-  position: relative;
-  overflow: clip;
-  height: var(--vh);
-  margin: auto;
-  margin-top: 50px;
-  margin-bottom: -100px;
-}
-
-.techstack h2 {
-  font-size: clamp(40px, 6vw, 80px); /* Fluid text size */
-  text-align: center;
-  position: absolute;
-  width: 100%;
-  top: 120px;
-  left: 0;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-/* ========================================================== */
-/* 💻 COMPACT LAPTOPS & TABLETS (DELL LATITUDE OVERLAP FIX)   */
-/* ========================================================== */
-@media screen and (max-width: 1440px) and (min-width: 769px) {
-  
-  /* Text container ko left side par lock karo (Screen ka sirf 55% hissa lega) */
-  .landing-text, .about-text, .section-content {
-    max-width: 55vw !important;
-    z-index: 10;
-    position: relative;
+/* ========================================= */
+/* ⚡ TABLET (769px - 1024px)                 */
+/* ========================================= */
+@media screen and (max-width: 1024px) {
+  :root {
+    --containerPadding: clamp(12px, 4vw, 40px);
+    --sectionGap: clamp(15px, 3vw, 35px);
   }
 
-  /* Font sizes ko screen ke hisab se chota karo taake model par na charhein */
+  /* Grid to single column for sections */
+  .landing-section,
+  .about-section,
+  .section-with-model {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    grid-gap: var(--sectionGap);
+  }
+
+  .landing-text,
+  .about-text,
+  .section-content {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .character-container,
+  .canvas-container,
+  .model-container {
+    min-height: 400px;
+    margin-top: var(--sectionGap);
+  }
+
   h1, .landing-text h1 {
-    font-size: 5vw !important;
-    line-height: 1.1 !important;
+    font-size: clamp(2rem, 7vw, 3rem);
   }
 
   h2, h3, .subtitle {
-    font-size: 2.8vw !important;
+    font-size: clamp(1.5rem, 5vw, 2rem);
   }
 
   p, .para {
-    font-size: 1.2vw !important;
-    line-height: 1.5 !important;
-  }
-
-  /* 3D Model ko right side par lock karo taake text se door rahe */
-  .character-container, .canvas-container {
-    width: 45vw !important;
-    position: absolute !important;
-    right: 0 !important;
-    z-index: 1;
-  }
-
-  /* Grid Cards Fix */
-  .what-i-do-grid, .grid-container {
-    gap: 2vw !important;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    max-width: 100%;
   }
 }
 
 /* ========================================= */
-/* 📱 SAFE MOBILE FIX (NO GSAP CONFLICTS)    */
+/* 📱 MOBILE (320px - 768px)                 */
 /* ========================================= */
 @media screen and (max-width: 768px) {
+  :root {
+    --containerPadding: clamp(10px, 3vw, 20px);
+    --sectionGap: clamp(12px, 2.5vw, 25px);
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .container1 {
+    min-height: auto;
+    padding: var(--containerPadding);
+  }
+
+  /* All sections to single column */
+  .landing-section,
+  .about-section,
+  .section-with-model,
+  section {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding: var(--containerPadding) 0 !important;
+  }
+
+  .landing-text,
+  .about-text,
+  .section-content {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
   h1, .landing-text h1 {
-    font-size: 11vw !important; 
-    line-height: 1.1 !important;
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    line-height: 1.1;
   }
 
   h2, h3, .subtitle {
-    font-size: 6vw !important;
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
   }
 
   p, .para {
-    font-size: 1rem !important;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    max-width: 100%;
   }
 
-  /* Mobile par sections ki height normal karo */
-  section, .section-container, .what-i-do, .career-section {
-    height: auto !important; 
-    min-height: auto !important;
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
-  }
-
-  /* Mobile par har card ko alag line mein rakho */
-  .what-i-do-grid, .grid-container, .cards-container {
-    display: grid !important;
-    grid-template-columns: 1fr !important; 
-    gap: 20px !important;
+  /* Canvas responsive */
+  .canvas-container,
+  .character-container,
+  .model-container {
     width: 100% !important;
-  }
-  
-  /* Canvas ko mobile par theek height do */
-  .canvas-container {
-    height: 50vh !important;
+    height: 60vw !important;
+    min-height: 300px !important;
+    max-height: 500px !important;
     position: relative !important;
+    margin-top: var(--sectionGap) !important;
+    margin-bottom: var(--sectionGap) !important;
   }
 
-  /* Mobile par text left par lock karne ki zaroorat nahi */
-  .landing-text, .about-text, .section-content {
-    max-width: 100% !important;
+  /* Single column grid */
+  .what-i-do-grid,
+  .grid-container,
+  .cards-container {
+    grid-template-columns: 1fr !important;
+    grid-gap: var(--sectionGap) !important;
+  }
+
+  .what-i-do,
+  .career-section,
+  .skills-section {
+    min-height: auto !important;
+    height: auto !important;
+    padding: var(--containerPadding) 0 !important;
+  }
+
+  .techstack {
+    padding: 50px var(--containerPadding) !important;
+  }
+
+  .techstack h2 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  .tech-list,
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
   }
 }
 
-@media screen and (min-width: 768px) {
-  body {
-    --cWidth: 94%;
+/* ========================================= */
+/* SMALL MOBILE (320px - 480px)              */
+/* ========================================= */
+@media screen and (max-width: 480px) {
+  :root {
+    --containerPadding: 10px;
+    --sectionGap: 12px;
   }
+
+  h1, .landing-text h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h2, h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p, .para {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .container1 {
+    padding: 10px;
+  }
+
+  .techstack {
+    padding: 30px 10px !important;
+  }
+
+  .tech-list,
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ========================================= */
+/* DESKTOP LARGE (1440px+)                   */
+/* ========================================= */
+@media screen and (min-width: 1440px) {
+  :root {
+    --containerPadding: 60px;
+    --sectionGap: 50px;
+  }
+
+  .landing-section,
+  .about-section,
+  .section-with-model {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+/* ========================================= */
+/* UTILITIES                                 */
+/* ========================================= */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --vh: 100dvh;
+  }
+}
+
+/* ========================================= */
+/* SMOOTH SCROLLING & PERFORMANCE            */
+/* ========================================= */
+.title,
+.para {
+  font-kerning: none;
+  -webkit-text-rendering: optimizeSpeed;
+  text-rendering: optimizeSpeed;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* Prevent layout shift */
+input, select, textarea, button {
+  font-family: inherit;
 }
