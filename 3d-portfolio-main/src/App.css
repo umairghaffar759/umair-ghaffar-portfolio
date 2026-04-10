@@ -1,11 +1,6 @@
-/* --- Desktop (Laptop) Setup: Jaisa pehle tha wese hi rahega --- */
 .section-container {
-  width: 100%;
-  max-width: 1300px; /* Max itna jayega, lekin choti screen par khud ko chota kar lega */
-  margin: 0 auto; /* Center alignment ke liye */
-  padding: 0 20px; /* Sides par thori jagah taake text screen se na chipke */
+  width: 1300px;
 }
-
 .title,
 .para {
   font-kerning: none;
@@ -14,44 +9,20 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
-
-/* --- Tablets ke liye (iPad etc) --- */
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1600px) {
   .section-container {
-    max-width: 900px;
+    width: 1200px;
+    max-width: calc(100% - 160px);
   }
 }
-
-/* --- Mobile Phone Fix (The "Kamal" Part) --- */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1400px) {
   .section-container {
-    width: 90%; /* Mobile par screen ka 90% hissa use karega */
-    max-width: 100%;
+    width: 900px;
   }
-
-  /* Landing page ka layout change: Text upar, Model niche */
-  .landing {
-    display: flex !important;
-    flex-direction: column !important; /* Items ek ke niche ek ayenge */
-    align-items: center;
-    text-align: center;
-    padding-top: 100px;
-  }
-
-  .landing-text h1 {
-    font-size: 2.5rem !important; /* Mobile par headings choti */
-    margin-bottom: 15px;
-  }
-
-  /* 3D Model ko thora niche aur chota dikhane ke liye */
-  .canvas-container {
-    height: 45vh !important; 
-    width: 100vw !important;
-    margin-top: 20px;
-  }
-  
-  /* Navbar ko mobile par hide ya toggle karna hoga baad mein */
-  .navbar-links {
-    display: none; /* Filhal hide kar dete hain agar menu nahi banaya */
+}
+@media only screen and (max-width: 900px) {
+  .section-container {
+    width: 500px;
+    max-width: var(--cWidth);
   }
 }
