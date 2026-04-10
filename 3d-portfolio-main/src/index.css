@@ -2,513 +2,110 @@
 
 :root {
   font-family: "Geist", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  line-height: 1.5;
-  scroll-behavior: smooth;
-  color-scheme: light dark;
-  color: #eae5ec;
-  background-color: var(--backgroundColor);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  
-  /* ===== COLORS ===== */
   --accentColor: #5eead4;
-  --backgroundColor: #0a0e17;
-  --darkBg: #050810;
-  
-  /* ===== SPACING - RESPONSIVE ===== */
-  --containerPadding: clamp(15px, 5vw, 60px);
-  --sectionGap: clamp(20px, 4vw, 50px);
-  
-  /* ===== VIEWPORT HEIGHT ===== */
+  --backgroundColor: #050810;
   --vh: 100vh;
-  --vh: 100svh;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Geist", sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: var(--accentColor);
-}
-
-main {
-  opacity: 1;
-  transition: 0.3s;
-}
-
-.main-active {
-  opacity: 0;
-  animation: fadeIn 1s 1;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fadeIn {
-  100% { opacity: 1; }
-}
-
-/* ========================================= */
-/* BASE GLOBAL STYLES (UNIVERSAL)            */
-/* ========================================= */
 * {
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--darkBg);
+  background-color: var(--backgroundColor);
   color: #eae5ec;
   overflow-x: hidden;
-  width: 100%;
-}
-
-.main-body {
-  width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-.container-main {
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
+  width: 100vw;
 }
 
 /* ========================================= */
-/* UNIVERSAL SECTION CONTAINER              */
+/* 💻 DESKTOP & LAPTOP LAYOUT (HP & DELL)     */
 /* ========================================= */
-.section-container {
-  /* Flexible width - no hardcoded pixels */
-  width: min(100% - 2 * var(--containerPadding), 1400px);
-  max-width: calc(100% - 2 * var(--containerPadding));
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-}
 
-.container1 {
-  width: 100%;
-  min-height: var(--vh);
-  margin: 0 auto;
-  padding: 0 var(--containerPadding);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-/* ========================================= */
-/* LANDING SECTION - FLEX LAYOUT             */
-/* ========================================= */
-.landing-section, 
-.about-section,
-.section-with-model {
-  width: 100%;
-  min-height: var(--vh);
+.landing-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: var(--sectionGap);
+  /* Text ko 1.2 hissa aur Model ko 0.8 hissa diya taake Dell par text overlap na ho */
+  grid-template-columns: 1.2fr 0.8fr; 
   align-items: center;
-  padding: var(--containerPadding) 0;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
   position: relative;
 }
 
-/* Text side */
-.landing-text,
-.about-text,
-.section-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: 100%;
-  padding: var(--sectionGap);
+.landing-text {
   z-index: 10;
-  position: relative;
+  text-align: left; /* Center khatam! Left alignment wapas */
 }
 
-.landing-text h1,
-.about-text h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+.landing-text h1 {
+  /* Fluid font size: Dell par chota, HP par bada */
+  font-size: clamp(2.5rem, 6vw, 5.5rem) !important; 
   line-height: 1.1;
-  margin-bottom: 1rem;
-  font-weight: 400;
-}
-
-h2, h3 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  line-height: 1.2;
-  margin-bottom: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .subtitle {
   font-size: clamp(1rem, 2vw, 1.5rem);
-  line-height: 1.4;
+  color: var(--accentColor);
+  font-weight: 500;
 }
 
-p, .para {
-  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  max-width: 90%;
-}
-
-/* Model/Canvas side */
-.character-container,
-.canvas-container,
-.model-container {
+/* 3D Model Container */
+.character-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: 500px;
-  position: relative;
-  z-index: 1;
-}
-
-.character-container canvas,
-.canvas-container canvas {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain;
+  align-items: center;
 }
 
 /* ========================================= */
-/* GRID CARDS SECTION                        */
+/* 📱 MOBILE LAYOUT (SMARTPHONES)             */
 /* ========================================= */
-.what-i-do-grid,
-.grid-container,
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  grid-gap: var(--sectionGap);
-  width: 100%;
-  margin: var(--sectionGap) 0;
+
+@media screen and (max-width: 768px) {
+  .landing-section {
+    grid-template-columns: 1fr; /* Mobile par ek ke niche ek */
+    text-align: center;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .landing-text {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .landing-text h1 {
+    font-size: 11vw !important;
+  }
+
+  .character-container {
+    height: 50vh;
+    width: 100vw;
+    margin-top: 20px;
+  }
 }
 
-.what-i-do-grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-/* Card styles */
-.card, .grid-card {
-  padding: var(--sectionGap);
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(94, 234, 212, 0.2);
-  transition: all 0.3s ease;
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.card:hover, .grid-card:hover {
-  background: rgba(94, 234, 212, 0.1);
-  border-color: var(--accentColor);
-  transform: translateY(-5px);
-}
-
-/* ========================================= */
-/* TECHSTACK SECTION                        */
-/* ========================================= */
-.techstack {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  min-height: auto;
-  padding: 100px var(--containerPadding) 50px;
-}
-
-.techstack h2 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  text-align: center;
-  width: 100%;
-  margin: 0 0 50px 0;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.tech-list,
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: var(--sectionGap);
+/* --- Global Section Spacing --- */
+section, .section-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 60px 20px;
 }
 
-/* ========================================= */
-/* SPLIT LINE ANIMATION                     */
-/* ========================================= */
-.split-line, 
-.split-h2 {
-  overflow: hidden;
-}
-
-.split-h2 {
-  display: flex;
-  white-space: nowrap;
-  flex-wrap: nowrap;
-}
-
-/* ========================================= */
-/* ⚡ TABLET (769px - 1024px)                 */
-/* ========================================= */
-@media screen and (max-width: 1024px) {
-  :root {
-    --containerPadding: clamp(12px, 4vw, 40px);
-    --sectionGap: clamp(15px, 3vw, 35px);
-  }
-
-  /* Grid to single column for sections */
-  .landing-section,
-  .about-section,
-  .section-with-model {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    grid-gap: var(--sectionGap);
-  }
-
-  .landing-text,
-  .about-text,
-  .section-content {
-    max-width: 100%;
-    padding: 0;
-  }
-
-  .character-container,
-  .canvas-container,
-  .model-container {
-    min-height: 400px;
-    margin-top: var(--sectionGap);
-  }
-
-  h1, .landing-text h1 {
-    font-size: clamp(2rem, 7vw, 3rem);
-  }
-
-  h2, h3, .subtitle {
-    font-size: clamp(1.5rem, 5vw, 2rem);
-  }
-
-  p, .para {
-    font-size: clamp(0.85rem, 2vw, 1rem);
-    max-width: 100%;
-  }
-}
-
-/* ========================================= */
-/* 📱 MOBILE (320px - 768px)                 */
-/* ========================================= */
-@media screen and (max-width: 768px) {
-  :root {
-    --containerPadding: clamp(10px, 3vw, 20px);
-    --sectionGap: clamp(12px, 2.5vw, 25px);
-  }
-
-  body {
-    font-size: 16px;
-  }
-
-  .container1 {
-    min-height: auto;
-    padding: var(--containerPadding);
-  }
-
-  /* All sections to single column */
-  .landing-section,
-  .about-section,
-  .section-with-model,
-  section {
-    grid-template-columns: 1fr !important;
-    min-height: auto !important;
-    height: auto !important;
-    padding: var(--containerPadding) 0 !important;
-  }
-
-  .landing-text,
-  .about-text,
-  .section-content {
-    max-width: 100% !important;
-    padding: 0 !important;
-  }
-
-  h1, .landing-text h1 {
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
-    line-height: 1.1;
-  }
-
-  h2, h3, .subtitle {
-    font-size: clamp(1.25rem, 5vw, 1.75rem);
-  }
-
-  p, .para {
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-    max-width: 100%;
-  }
-
-  /* Canvas responsive */
-  .canvas-container,
-  .character-container,
-  .model-container {
-    width: 100% !important;
-    height: 60vw !important;
-    min-height: 300px !important;
-    max-height: 500px !important;
-    position: relative !important;
-    margin-top: var(--sectionGap) !important;
-    margin-bottom: var(--sectionGap) !important;
-  }
-
-  /* Single column grid */
-  .what-i-do-grid,
-  .grid-container,
-  .cards-container {
-    grid-template-columns: 1fr !important;
-    grid-gap: var(--sectionGap) !important;
-  }
-
-  .what-i-do,
-  .career-section,
-  .skills-section {
-    min-height: auto !important;
-    height: auto !important;
-    padding: var(--containerPadding) 0 !important;
-  }
-
-  .techstack {
-    padding: 50px var(--containerPadding) !important;
-  }
-
-  .techstack h2 {
-    font-size: clamp(1.75rem, 7vw, 2.5rem);
-  }
-
-  .tech-list,
-  .tech-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
-  }
-}
-
-/* ========================================= */
-/* SMALL MOBILE (320px - 480px)              */
-/* ========================================= */
-@media screen and (max-width: 480px) {
-  :root {
-    --containerPadding: 10px;
-    --sectionGap: 12px;
-  }
-
-  h1, .landing-text h1 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  h2, h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-
-  p, .para {
-    font-size: 0.9rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .container1 {
-    padding: 10px;
-  }
-
-  .techstack {
-    padding: 30px 10px !important;
-  }
-
-  .tech-list,
-  .tech-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-/* ========================================= */
-/* DESKTOP LARGE (1440px+)                   */
-/* ========================================= */
-@media screen and (min-width: 1440px) {
-  :root {
-    --containerPadding: 60px;
-    --sectionGap: 50px;
-  }
-
-  .landing-section,
-  .about-section,
-  .section-with-model {
-    grid-template-columns: 1.2fr 1fr;
-  }
-}
-
-/* ========================================= */
-/* UTILITIES                                 */
-/* ========================================= */
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.grid-2 {
-  grid-template-columns: repeat(2, 1fr) !important;
-}
-
-@supports (height: 100dvh) {
-  :root {
-    --vh: 100dvh;
-  }
-}
-
-/* ========================================= */
-/* SMOOTH SCROLLING & PERFORMANCE            */
-/* ========================================= */
-.title,
-.para {
-  font-kerning: none;
-  -webkit-text-rendering: optimizeSpeed;
-  text-rendering: optimizeSpeed;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: auto;
-}
-
-/* Prevent layout shift */
-input, select, textarea, button {
-  font-family: inherit;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
