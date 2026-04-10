@@ -20,6 +20,7 @@ const Scene = () => {
   const { setLoading } = useLoading();
 
   const [character, setChar] = useState<THREE.Object3D | null>(null);
+
   useEffect(() => {
     if (canvasDiv.current) {
       let rect = canvasDiv.current.getBoundingClientRect();
@@ -32,16 +33,32 @@ const Scene = () => {
         antialias: true,
       });
       renderer.setSize(container.width, container.height);
-      renderer.setPixelRatio(window.devicePixelRatio);
+      
+      // Performance Fix: Mobile par pixel ratio 2 se upar nahi jana chahiye warna lag karega
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
       canvasDiv.current.appendChild(renderer.domElement);
 
-      const camera = new THREE.PerspectiveCamera(14.5, aspect, 0.1, 1000);
-      camera.position.z = 10;
-      camera.position.set(0, 13.1, 24.7);
-      camera.zoom = 1.1;
+      // --- RESPONSIVE CAMERA LOGIC ---
+      const isMobile = window.innerWidth < 768;
+      
+      // Mobile par wide view (32) aur desktop par narrow (14.5)
+      const fov = isMobile ? 32 : 14.5; 
+      const camera = new THREE.PerspectiveCamera(fov, aspect, 0.1, 1000);
+
+      if (isMobile) {
+        // Mobile settings: Camera door (Z: 42) taake character frame mein fit aaye
+        camera.position.set(0, 11, 42); 
+        camera.zoom = 0.9; 
+      } else {
+        // Laptop settings: Wahi jo pehle thi
+        camera.position.set(0, 13.1, 24.7);
+        camera.zoom = 1.1;
+      }
       camera.updateProjectionMatrix();
+      // -------------------------------
 
       let headBone: THREE.Object3D | null = null;
       let screenLight: any | null = null;
@@ -63,12 +80,14 @@ const Scene = () => {
           scene.add(character);
           headBone = character.getObjectByName("spine006") || null;
           screenLight = character.getObjectByName("screenlight") || null;
+          
           progress.loaded().then(() => {
             setTimeout(() => {
               light.turnOnLights();
               animations.startIntro();
             }, 2500);
           });
+
           window.addEventListener("resize", () =>
             handleResize(renderer, camera, canvasDiv, character)
           );
@@ -81,10 +100,11 @@ const Scene = () => {
       const onMouseMove = (event: MouseEvent) => {
         handleMouseMove(event, (x, y) => (mouse = { x, y }));
       };
+
       let debounce: number | undefined;
       const onTouchStart = (event: TouchEvent) => {
         const element = event.target as HTMLElement;
-        debounce = setTimeout(() => {
+        debounce = window.setTimeout(() => {
           element?.addEventListener("touchmove", (e: TouchEvent) =>
             handleTouchMove(e, (x, y) => (mouse = { x, y }))
           );
@@ -98,14 +118,14 @@ const Scene = () => {
         });
       };
 
-      document.addEventListener("mousemove", (event) => {
-        onMouseMove(event);
-      });
+      document.addEventListener("mousemove", onMouseMove);
+      
       const landingDiv = document.getElementById("landingDiv");
       if (landingDiv) {
-        landingDiv.addEventListener("touchstart", onTouchStart);
-        landingDiv.addEventListener("touchend", onTouchEnd);
+        landingDiv.addEventListener("touchstart", onTouchStart as any);
+        landingDiv.addEventListener("touchend", onTouchEnd as any);
       }
+
       const animate = () => {
         requestAnimationFrame(animate);
         if (headBone) {
@@ -125,7 +145,9 @@ const Scene = () => {
         }
         renderer.render(scene, camera);
       };
+
       animate();
+
       return () => {
         clearTimeout(debounce);
         scene.clear();
@@ -136,14 +158,14 @@ const Scene = () => {
         if (canvasDiv.current) {
           canvasDiv.current.removeChild(renderer.domElement);
         }
+        document.removeEventListener("mousemove", onMouseMove);
         if (landingDiv) {
-          document.removeEventListener("mousemove", onMouseMove);
-          landingDiv.removeEventListener("touchstart", onTouchStart);
-          landingDiv.removeEventListener("touchend", onTouchEnd);
+          landingDiv.removeEventListener("touchstart", onTouchStart as any);
+          landingDiv.removeEventListener("touchend", onTouchEnd as any);
         }
       };
     }
-  }, []);
+  }, [setLoading]);
 
   return (
     <>
