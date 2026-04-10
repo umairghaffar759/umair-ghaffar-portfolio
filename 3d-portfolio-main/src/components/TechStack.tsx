@@ -13,7 +13,6 @@ import {
 
 const textureLoader = new THREE.TextureLoader();
 
-// Sirf wahi images jo aapne confirm ki hain ke download ho gayi hain
 const imageUrls = [
   "/images/mexc.webp",
   "/images/tradingview.webp",
@@ -31,7 +30,6 @@ const imageUrls = [
 const textures = imageUrls.map((url) => textureLoader.load(url));
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
-// 40-45 spheres kafi hain 11 images ke liye, ye repeat hoti rahengi aur look heavy aayegi
 const spheres = [...Array(42)].map(() => ({
   scale: [0.7, 0.85, 1, 1.15][Math.floor(Math.random() * 4)],
 }));
@@ -177,9 +175,12 @@ const TechStack = () => {
           ))}
         </Physics>
         <Environment files="/models/char_enviorment.hdr" environmentIntensity={0.5} />
-        <EffectComposer disableNormalPass>
+        
+        {/* FIX APPLIED HERE: Removed disableNormalPass */}
+        <EffectComposer>
           <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
         </EffectComposer>
+        
       </Canvas>
     </div>
   );
