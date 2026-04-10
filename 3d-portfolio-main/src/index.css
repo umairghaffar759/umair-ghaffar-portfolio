@@ -132,66 +132,43 @@ body {
   }
 }
 
-
-/* ==================================================== */
-/* 📱 MOBILE RESPONSIVE PERFECT FIX (THE "KAMAL" PART)  */
-/* ==================================================== */
+/* ========================================= */
+/* SAFE MOBILE FIX (NO GSAP CONFLICTS)       */
+/* ========================================= */
 
 @media screen and (max-width: 768px) {
-  
-  /* 1. Fix Huge Name Text (UMAIR GHAFFAR) */
+  /* 1. Sirf text ko mobile ke hisab se chota karo */
   h1, .landing-text h1 {
-    font-size: 2.8rem !important; 
+    font-size: 12vw !important; /* Screen ki width ke hisab se adjust hoga */
     line-height: 1.1 !important;
-    margin-bottom: 10px !important;
   }
 
-  /* 2. Fix Overlapping Strategy & Expert Text */
   h2, h3, .subtitle {
-    font-size: 1.3rem !important;
-    line-height: 1.4 !important;
-    position: relative !important; 
-    transform: none !important; 
-    margin-top: 10px !important;
+    font-size: 6vw !important;
   }
 
-  /* 3. Stop Sections from Overlapping */
-  .landing {
-    display: flex !important;
-    flex-direction: column !important; /* Upar text, niche model */
-    justify-content: flex-start !important;
-    height: auto !important;
-    min-height: 100vh !important;
-    padding-top: 12vh !important; 
-  }
-
-  /* 4. Fix 3D Model Size on Mobile */
-  .character-container, .canvas-container {
-    position: relative !important;
-    height: 55vh !important; 
-    width: 100vw !important;
-    margin-top: 20px !important;
-  }
-
-  /* 5. General Spacing for About & What I Do Sections */
-  section, .section-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 50px 20px !important; 
-    height: auto !important; 
-    margin-top: 0 !important;
-  }
-
-  /* Paragraphs (About Me text) */
   p, .para {
     font-size: 1rem !important;
-    line-height: 1.6 !important;
   }
 
-  /* Grid Fix for What I Do Cards */
-  .grid-container, .what-i-do-grid {
-    display: flex !important;
-    flex-direction: column !important;
+  /* 2. Sections ko overlap hone se roko */
+  section, .section-container, .what-i-do, .career-section {
+    height: auto !important; 
+    min-height: auto !important;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* 3. 'What I Do' aur 'Career' cards ko ek line mein layo */
+  .what-i-do-grid, .grid-container, .cards-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important; /* Ek line mein ek div */
     gap: 20px !important;
+    width: 100% !important;
+  }
+  
+  /* 4. Canvas ko thori saans lene ki jagah do */
+  .canvas-container {
+    height: 60vh !important;
   }
 }
