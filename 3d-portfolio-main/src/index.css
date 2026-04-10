@@ -2,110 +2,164 @@
 
 :root {
   font-family: "Geist", sans-serif;
-  --accentColor: #5eead4;
-  --backgroundColor: #050810;
-  --vh: 100vh;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: var(--backgroundColor);
+  font-optical-sizing: auto;
+  font-style: normal;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+  color-scheme: light dark;
   color: #eae5ec;
-  overflow-x: hidden;
-  width: 100vw;
+  background-color: var(--backgroundColor);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  --accentColor: #5eead4;
+  --backgroundColor: #0a0e17;
+  --vh: 100vh;
+  --vh: 100svh;
 }
 
-/* ========================================= */
-/* 💻 DESKTOP & LAPTOP LAYOUT (HP & DELL)     */
-/* ========================================= */
-
-.landing-section {
-  display: grid;
-  /* Text ko 1.2 hissa aur Model ko 0.8 hissa diya taake Dell par text overlap na ho */
-  grid-template-columns: 1.2fr 0.8fr; 
-  align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 5%;
-  position: relative;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Geist", sans-serif;
 }
 
-.landing-text {
-  z-index: 10;
-  text-align: left; /* Center khatam! Left alignment wapas */
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
-.landing-text h1 {
-  /* Fluid font size: Dell par chota, HP par bada */
-  font-size: clamp(2.5rem, 6vw, 5.5rem) !important; 
-  line-height: 1.1;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.subtitle {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+a:hover {
   color: var(--accentColor);
-  font-weight: 500;
 }
 
-/* 3D Model Container */
-.character-container {
+main {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.main-active {
+  opacity: 0;
+  animation: fadeIn 1s 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  100% { opacity: 1; }
+}
+
+/* ========================================= */
+/* BASE GLOBAL STYLES (UNIVERSAL)            */
+/* ========================================= */
+body {
+  margin: 0;
+  height: auto;
+  background-color: #050810;
+  flex-grow: 1;
+  --cWidth: calc(100% - 30px);
+  max-width: 100vw;
+  overflow-x: hidden; 
+}
+
+.main-body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.container-main {
+  width: 100%;
+  margin: auto;
   position: relative;
-  width: 100%;
-  height: 80vh;
+}
+
+.container1 {
+  width: var(--cWidth);
+  height: var(--vh);
+  margin: auto;
+  position: relative;
+}
+
+.split-line, .split-h2 {
+  overflow: hidden;
+}
+
+.split-h2 {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  white-space: nowrap;
+  flex-wrap: nowrap;
 }
 
-/* ========================================= */
-/* 📱 MOBILE LAYOUT (SMARTPHONES)             */
-/* ========================================= */
-
-@media screen and (max-width: 768px) {
-  .landing-section {
-    grid-template-columns: 1fr; /* Mobile par ek ke niche ek */
-    text-align: center;
-    padding-top: 80px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .landing-text {
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .landing-text h1 {
-    font-size: 11vw !important;
-  }
-
-  .character-container {
-    height: 50vh;
-    width: 100vw;
-    margin-top: 20px;
-  }
-}
-
-/* --- Global Section Spacing --- */
-section, .section-container {
+.techstack {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
+  position: relative;
+  overflow: clip;
+  height: var(--vh);
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: -100px;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+.techstack h2 {
+  font-size: clamp(40px, 6vw, 80px); /* Fluid text size */
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 120px;
+  left: 0;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* ========================================= */
+/* 📱 SAFE MOBILE FIX (NO GSAP CONFLICTS)    */
+/* ========================================= */
+@media screen and (max-width: 768px) {
+  h1, .landing-text h1 {
+    font-size: 11vw !important; 
+    line-height: 1.1 !important;
+  }
+
+  h2, h3, .subtitle {
+    font-size: 6vw !important;
+  }
+
+  p, .para {
+    font-size: 1rem !important;
+  }
+
+  /* Mobile par sections ki height normal karo */
+  section, .section-container, .what-i-do, .career-section {
+    height: auto !important; 
+    min-height: auto !important;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* Mobile par har card ko alag line mein rakho */
+  .what-i-do-grid, .grid-container, .cards-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important; 
+    gap: 20px !important;
+    width: 100% !important;
+  }
+  
+  /* Canvas ko mobile par theek height do */
+  .canvas-container {
+    height: 50vh !important;
+    position: relative !important;
+  }
+
+  /* Mobile par text left par lock karne ki zaroorat nahi */
+  .landing-text, .about-text, .section-content {
+    max-width: 100% !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    --cWidth: 94%;
+  }
 }

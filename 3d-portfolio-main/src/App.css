@@ -1,6 +1,11 @@
+/* Fixed Responsive Section Container */
 .section-container {
-  width: 1300px;
+  width: 100%;
+  max-width: 1300px; /* HP par 1300px, choti screens par adjust ho jayega */
+  margin: 0 auto;
 }
+
+/* Original Text Optimizations (Do not change) */
 .title,
 .para {
   font-kerning: none;
@@ -9,20 +14,25 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+
+/* Responsive Breakpoints */
 @media only screen and (max-width: 1600px) {
   .section-container {
-    width: 1200px;
-    max-width: calc(100% - 160px);
+    width: 100%;
+    max-width: 1200px;
   }
 }
+
 @media only screen and (max-width: 1400px) {
   .section-container {
-    width: 900px;
+    width: 100%;
+    max-width: 900px;
   }
 }
+
 @media only screen and (max-width: 900px) {
   .section-container {
-    width: 500px;
+    width: 100%;
     max-width: var(--cWidth);
   }
 }
