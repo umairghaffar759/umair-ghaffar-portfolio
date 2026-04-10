@@ -23,12 +23,7 @@
   --vh: 100svh;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Geist", sans-serif;
 }
 
@@ -53,19 +48,18 @@ main {
 }
 
 @keyframes fadeIn {
-  100% {
-    opacity: 1;
-  }
+  100% { opacity: 1; }
 }
 
-/* FIX: Body ko merge kiya taake mobile par theek se chale aur scroll ho */
+/* ========================================= */
+/* BASE GLOBAL STYLES (UNIVERSAL)            */
+/* ========================================= */
 body {
   margin: 0;
   height: auto;
   background-color: #050810;
   flex-grow: 1;
   --cWidth: calc(100% - 30px);
-  --cMaxWidth: 1920px;
   max-width: 100vw;
   overflow-x: hidden; 
 }
@@ -88,12 +82,11 @@ body {
   position: relative;
 }
 
-.split-line {
+.split-line, .split-h2 {
   overflow: hidden;
 }
 
 .split-h2 {
-  overflow: hidden;
   display: flex;
   white-space: nowrap;
   flex-wrap: nowrap;
@@ -110,7 +103,7 @@ body {
 }
 
 .techstack h2 {
-  font-size: 80px;
+  font-size: clamp(40px, 6vw, 80px); /* Fluid text size */
   text-align: center;
   position: absolute;
   width: 100%;
@@ -120,26 +113,53 @@ body {
   text-transform: uppercase;
 }
 
-@media screen and (min-width: 768px) {
-  body {
-    --cWidth: 94%;
+/* ========================================================== */
+/* 💻 COMPACT LAPTOPS & TABLETS (DELL LATITUDE OVERLAP FIX)   */
+/* ========================================================== */
+@media screen and (max-width: 1440px) and (min-width: 769px) {
+  
+  /* Text container ko left side par lock karo (Screen ka sirf 55% hissa lega) */
+  .landing-text, .about-text, .section-content {
+    max-width: 55vw !important;
+    z-index: 10;
+    position: relative;
   }
-}
 
-@media screen and (max-width: 900px) {
-  .techstack h2 {
-    font-size: 40px;
-  }
-}
-
-/* ========================================= */
-/* SAFE MOBILE FIX (NO GSAP CONFLICTS)       */
-/* ========================================= */
-
-@media screen and (max-width: 768px) {
-  /* 1. Sirf text ko mobile ke hisab se chota karo */
+  /* Font sizes ko screen ke hisab se chota karo taake model par na charhein */
   h1, .landing-text h1 {
-    font-size: 12vw !important; /* Screen ki width ke hisab se adjust hoga */
+    font-size: 5vw !important;
+    line-height: 1.1 !important;
+  }
+
+  h2, h3, .subtitle {
+    font-size: 2.8vw !important;
+  }
+
+  p, .para {
+    font-size: 1.2vw !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 3D Model ko right side par lock karo taake text se door rahe */
+  .character-container, .canvas-container {
+    width: 45vw !important;
+    position: absolute !important;
+    right: 0 !important;
+    z-index: 1;
+  }
+
+  /* Grid Cards Fix */
+  .what-i-do-grid, .grid-container {
+    gap: 2vw !important;
+  }
+}
+
+/* ========================================= */
+/* 📱 SAFE MOBILE FIX (NO GSAP CONFLICTS)    */
+/* ========================================= */
+@media screen and (max-width: 768px) {
+  h1, .landing-text h1 {
+    font-size: 11vw !important; 
     line-height: 1.1 !important;
   }
 
@@ -151,7 +171,7 @@ body {
     font-size: 1rem !important;
   }
 
-  /* 2. Sections ko overlap hone se roko */
+  /* Mobile par sections ki height normal karo */
   section, .section-container, .what-i-do, .career-section {
     height: auto !important; 
     min-height: auto !important;
@@ -159,16 +179,28 @@ body {
     padding-bottom: 40px !important;
   }
 
-  /* 3. 'What I Do' aur 'Career' cards ko ek line mein layo */
+  /* Mobile par har card ko alag line mein rakho */
   .what-i-do-grid, .grid-container, .cards-container {
     display: grid !important;
-    grid-template-columns: 1fr !important; /* Ek line mein ek div */
+    grid-template-columns: 1fr !important; 
     gap: 20px !important;
     width: 100% !important;
   }
   
-  /* 4. Canvas ko thori saans lene ki jagah do */
+  /* Canvas ko mobile par theek height do */
   .canvas-container {
-    height: 60vh !important;
+    height: 50vh !important;
+    position: relative !important;
+  }
+
+  /* Mobile par text left par lock karne ki zaroorat nahi */
+  .landing-text, .about-text, .section-content {
+    max-width: 100% !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    --cWidth: 94%;
   }
 }
