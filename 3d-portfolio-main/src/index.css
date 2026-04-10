@@ -2,7 +2,6 @@
 
 :root {
   font-family: "Geist", sans-serif;
-
   font-optical-sizing: auto;
   font-style: normal;
   line-height: 1.5;
@@ -33,10 +32,6 @@ h6 {
   font-family: "Geist", sans-serif;
 }
 
-body {
-  overflow: hidden;
-}
-
 a {
   color: inherit;
   text-decoration: inherit;
@@ -63,6 +58,7 @@ main {
   }
 }
 
+/* FIX: Body ko merge kiya taake mobile par theek se chale aur scroll ho */
 body {
   margin: 0;
   height: auto;
@@ -71,7 +67,7 @@ body {
   --cWidth: calc(100% - 30px);
   --cMaxWidth: 1920px;
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: hidden; 
 }
 
 .main-body {
@@ -133,5 +129,69 @@ body {
 @media screen and (max-width: 900px) {
   .techstack h2 {
     font-size: 40px;
+  }
+}
+
+
+/* ==================================================== */
+/* 📱 MOBILE RESPONSIVE PERFECT FIX (THE "KAMAL" PART)  */
+/* ==================================================== */
+
+@media screen and (max-width: 768px) {
+  
+  /* 1. Fix Huge Name Text (UMAIR GHAFFAR) */
+  h1, .landing-text h1 {
+    font-size: 2.8rem !important; 
+    line-height: 1.1 !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* 2. Fix Overlapping Strategy & Expert Text */
+  h2, h3, .subtitle {
+    font-size: 1.3rem !important;
+    line-height: 1.4 !important;
+    position: relative !important; 
+    transform: none !important; 
+    margin-top: 10px !important;
+  }
+
+  /* 3. Stop Sections from Overlapping */
+  .landing {
+    display: flex !important;
+    flex-direction: column !important; /* Upar text, niche model */
+    justify-content: flex-start !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    padding-top: 12vh !important; 
+  }
+
+  /* 4. Fix 3D Model Size on Mobile */
+  .character-container, .canvas-container {
+    position: relative !important;
+    height: 55vh !important; 
+    width: 100vw !important;
+    margin-top: 20px !important;
+  }
+
+  /* 5. General Spacing for About & What I Do Sections */
+  section, .section-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 50px 20px !important; 
+    height: auto !important; 
+    margin-top: 0 !important;
+  }
+
+  /* Paragraphs (About Me text) */
+  p, .para {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Grid Fix for What I Do Cards */
+  .grid-container, .what-i-do-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
   }
 }
