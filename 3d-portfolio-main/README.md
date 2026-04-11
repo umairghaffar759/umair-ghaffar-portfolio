@@ -1,76 +1,53 @@
-# 3D Portfolio Website
+# 🌟 Umair Ghaffar - 3D Interactive Portfolio
 
-This repository contains the source code for a personal 3D portfolio built with React, TypeScript, Three.js, React Three Fiber, and GSAP. It includes animated page sections, a character scene, custom cursor interactions, and smooth transitions designed for a modern portfolio experience.
+**Professional Python Developer | AI Automation Specialist | Digital Marketer**
 
-Live site: [https://umair-ghaffar-portfolio.vercel.app/](https://umair-ghaffar-portfolio.vercel.app/)
+Welcome to the source code of my personal 3D interactive portfolio. This repository showcases a premium, high-performance web experience built with React and Three.js, reflecting my focus on cutting-edge aesthetics (like Glassmorphism) and seamless user experiences with zero-lag loading.
+
+🌐 **Live Experience:** [umair-ghaffar-portfolio.vercel.app](https://umair-ghaffar-portfolio.vercel.app/)
 
 ![Portfolio Preview](public/images/preview1.png)
 
-## Table of Contents
+---
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Available Scripts](#available-scripts)
-- [GSAP License Note](#gsap-license-note)
-- [Customization Guide](#customization-guide)
-- [Troubleshooting](#troubleshooting)
-- [Deployment](#deployment)
-- [License](#license)
+## 🚀 About Me
 
-## Features
+I am a tech enthusiast and developer based in Lahore, Pakistan, specializing in building AI-driven automation systems and scalable backend architectures. Whether it's integrating LLMs into web apps or driving digital growth, I focus on delivering high-end, functional solutions.
 
-- Responsive one-page portfolio layout with reusable section components.
-- 3D character scene rendering powered by React Three Fiber and Three.js.
-- GSAP-powered animations and transitions for interactive storytelling.
-- Custom cursor, hover interactions, and scroll-driven visual effects.
-- Organized component architecture with dedicated utilities and style modules.
+**🏆 Key Highlights & Achievements:**
+- **Global Top 20% Finalist:** International Research Olympiad (IRO) & current Student Ambassador.
+- **Creator of LensForge:** Developed and deployed a cinematic AI prompt generator utilizing the Groq API, Flask backend, and React.
+- **Certified Professional:** Holds certifications in AI Automation and Digital Marketing from JDC Free IT City.
+- **Content & Growth:** Managing automated visual storytelling channels across YouTube and TikTok.
 
-## Tech Stack
+## ⚙️ Tech Stack & Expertise
 
-### Core
+### My Primary Arsenal
+- **AI & Backend:** Python, Flask, Groq API, Ollama, Google AI Studio
+- **Growth & Automation:** Digital Marketing, SEO, Social Media Automation, Crypto Technical Analysis
+- **Design:** High-end UI/UX, Glassmorphism, Tailwind CSS
 
-- React 18
-- TypeScript
-- Vite
+### Portfolio Repository Stack (Frontend & 3D)
+- **Core:** React 18, TypeScript, Vite
+- **3D Rendering:** Three.js, @react-three/fiber, @react-three/drei
+- **Animations:** GSAP + @gsap/react (for scroll-driven storytelling)
 
-### Animation and 3D
+---
 
-- GSAP + @gsap/react
-- Three.js
-- @react-three/fiber
-- @react-three/drei
-- @react-three/postprocessing
-- @react-three/cannon
-- @react-three/rapier
+## 📂 Project Structure
 
-### Supporting Libraries
-
-- react-icons
-- react-fast-marquee
-- @vercel/analytics
-
-## Project Structure
-
+```text
 .
 ├── public/                    # Static assets
 ├── src/
 │   ├── assets/                # Local media/assets
 │   ├── components/
-│   │   ├── Character/         # 3D scene + character logic/utilities
-│   │   ├── styles/            # Section/component CSS files
-│   │   ├── About.tsx
-│   │   ├── Career.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Landing.tsx
+│   │   ├── Character/         # 3D scene + character logic
+│   │   ├── styles/            # Section CSS files
 │   │   ├── MainContainer.tsx  # Main page composition
-│   │   ├── Navbar.tsx
-│   │   ├── TechStack.tsx
-│   │   ├── WhatIDo.tsx
-│   │   └── Work.tsx
-│   ├── context/               # Global providers (loading state, etc.)
-│   ├── data/                  # Static data/content definitions
+│   │   └── ... (About, Career, Contact, Landing, Work)
+│   ├── context/               # Global providers
+│   ├── data/                  # Static content definitions
 │   ├── App.tsx
 │   └── main.tsx
 ├── package.json
