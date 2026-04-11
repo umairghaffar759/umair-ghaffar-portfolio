@@ -125,13 +125,12 @@ Deploy the dist/ folder to platforms like Vercel or Netlify.
 ## 🤝 Let's Connect
 Open to freelance projects, AI automation consulting, and digital marketing collaborations.
 
-Email: umairghaffar759@gmail.com]
+- **Email:** [umairghaffar759@gmail.com](mailto:umairghaffar759@gmail.com)
+- **LinkedIn:** [Umair Ghaffar](https://www.linkedin.com/in/umairghaffar759/)
+- **GitHub:** [@umairghaffar759](https://github.com/umairghaffar759/)
 
-LinkedIn: https://www.linkedin.com/in/umairghaffar759/
-
-GitHub:  https://github.com/umairghaffar759/
-
-Base 3D portfolio template originally created by Akash Malhotra. Customized and optimized by Umair Ghaffar.
+---
+*Base 3D portfolio Customized and optimized by Umair Ghaffar.*
 
 ## License
 
