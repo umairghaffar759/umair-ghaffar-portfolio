@@ -69,7 +69,7 @@ I am a tech enthusiast and developer based in Lahore, Pakistan, specializing in 
 2. Install dependencies:
    npm install
 
-3. Start the local development server:
+3. Start the development server:
    npm run dev
 
 4. Open the URL shown in the terminal (typically http://localhost:5173).
@@ -114,15 +114,24 @@ You can adapt this portfolio to your own profile by updating the following areas
 - GSAP plugin errors: Ensure you have the correct plugin package and license configuration for your target environment.
 - TypeScript build failures: Run npm run build and address reported type errors before deploying.
 
-## Deployment
+## 📜 Deployment & Scripts
 
-1. Create a production build:
-   npm run build
+npm run build - Builds a production-ready bundle.
 
-2. Validate locally:
-   npm run preview
+npm run preview - Serves the production build locally.
 
-3. Deploy the generated dist/ folder to your hosting provider (for example Vercel, Netlify, or Cloudflare Pages).
+Deploy the dist/ folder to platforms like Vercel or Netlify.
+
+## 🤝 Let's Connect
+Open to freelance projects, AI automation consulting, and digital marketing collaborations.
+
+Email: umairghaffar759@gmail.com]
+
+LinkedIn: https://www.linkedin.com/in/umairghaffar759/
+
+GitHub:  https://github.com/umairghaffar759/
+
+Base 3D portfolio template originally created by Akash Malhotra. Customized and optimized by Umair Ghaffar.
 
 ## License
 
